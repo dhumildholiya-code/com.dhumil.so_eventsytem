@@ -8,14 +8,14 @@ namespace Project_Setup
 {
     public static class ProjectSetup
     {
-        [MenuItem("BooBoo Tools/Setup/Create Default Folders", priority = 0)]
+        [MenuItem("Dhumil Tools/Setup/Create Default Folders", priority = 0)]
         public static void SetupProject()
         {
             CreateFolderStructure("_Project", new[] {"Scripts", "Art", "Prefabs", "Scenes"});
             SetupSceneFile();
         }
 
-        [MenuItem("BooBoo Tools/Setup/Update Scene Items", priority = 1)]
+        [MenuItem("Dhumil Tools/Setup/Update Scene Items", priority = 1)]
         public static void SetupSceneFile()
         {
             var dirPath = Path.Combine(Application.dataPath, "_Project/Editor/Generated");
@@ -45,7 +45,7 @@ namespace Project_Setup
             // loops though the array and generates the menu items
             for (var i = 0; i < sceneNames.Count; i++)
             {
-                sb.AppendLine($"    [MenuItem(\"BooBoo Tools/Scenes/{sceneNames[i]}\")]");
+                sb.AppendLine($"    [MenuItem(\"Dhumil Tools/Scenes/{sceneNames[i]}\")]");
                 sb.AppendLine($"    private static void MenuItem{i}()");
                 sb.AppendLine("     {");
                 sb.AppendLine($"        EditorSceneManager.OpenScene(\"{scenePaths[i]}\");");
