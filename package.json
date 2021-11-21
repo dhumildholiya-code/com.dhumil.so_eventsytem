@@ -1,12 +1,12 @@
-﻿{
-  "name": "com.dhumil.project_setup",
-  "version": "1.0.0",
-  "dispayName" : "Project Setup",
-  "description": "This is small tool to create initial folder structure for project and other common tools for project",
-  "unity" : "2020.3",
-  "author": {
-    "name": "Dhumil Dholiya",
-    "email": "dhumildholiya97@gmail.com",
-    "url": ""
+{
+    "name": "com.dhumil.project_setup",
+    "version": "1.0.0",
+    "dispayName" : "Project Setup",
+    "description": "This is small tool to create initial folder structure for project and other common tools for project",
+    "unity" : "2020.3",
+    "author": {
+      "name": "Dhumil Dholiya",
+      "email": "dhumildholiya97@gmail.com",
+      "url": ""
+    }
   }
-}
