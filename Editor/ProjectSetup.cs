@@ -4,7 +4,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace BooBooTool.Editor
+namespace Project_Setup
 {
     public static class ProjectSetup
     {
