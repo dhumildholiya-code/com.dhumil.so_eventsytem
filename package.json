@@ -4,9 +4,6 @@
   "dispayName" : "Project Setup",
   "description": "This is small tool to create initial folder structure for project and other common tools for project",
   "unity" : "2020.3",
-  "dependencies": {
-    
-  },
   "author": {
     "name": "Dhumil Dholiya",
     "email": "dhumildholiya97@gmail.com",
