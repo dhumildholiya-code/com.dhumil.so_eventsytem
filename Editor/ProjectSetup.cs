@@ -13,7 +13,7 @@ namespace Project_Setup
         [MenuItem("Dhumil Tools/Setup/Create Default Folders", priority = 0)]
         public static void SetupProject()
         {
-            CreateFolderStructure("_Project", new[] {"Scripts", "Art", "Prefabs", "Scenes"});
+            CreateFolderStructure("_Project", new[] {"Scripts", "Art", "Models", "Materials", "Prefabs", "Scenes"});
             // SetupSceneFile();
         }
 
