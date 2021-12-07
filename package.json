@@ -1,6 +1,6 @@
 {
     "name": "com.dhumil.project_setup",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "dispayName" : "Project Setup",
     "description": "This is small tool to create initial folder structure for project and other common tools for project",
     "unity" : "2020.3",
