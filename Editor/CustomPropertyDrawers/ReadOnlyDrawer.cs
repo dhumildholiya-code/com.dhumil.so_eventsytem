@@ -1,9 +1,12 @@
 ﻿using Project_Setup.CustomPropertyAttributes;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace Project_Setup.CustomPropertyDrawers
 {
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {
@@ -20,4 +23,5 @@ namespace Project_Setup.CustomPropertyDrawers
             return EditorGUI.GetPropertyHeight(property, label, true);
         }
     }
+#endif
 }
