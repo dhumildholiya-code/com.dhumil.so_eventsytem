@@ -7,7 +7,7 @@ namespace Project_Setup.So_EventSystem
     {
         public void RaiseEvent()
         {
-            eventToRaise?.Invoke(new Void());
+            RaiseEvent(new Void());
         }
     }
 }
