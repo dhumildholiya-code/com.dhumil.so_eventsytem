@@ -15,7 +15,7 @@ namespace Project_Setup
         {
             CreateFolderStructure("_Project", new[] {"Scripts", "Art", "Models", "Materials", "Prefabs", "Scenes"});
             // SetupSceneFile();
-        }
+        }        
 
         // [MenuItem("Dhumil Tools/Setup/Update Scene Items", priority = 1)]
         // public static void SetupSceneFile()
