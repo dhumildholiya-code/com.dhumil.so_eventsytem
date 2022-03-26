@@ -1,11 +1,13 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace Project_Setup
 {
+#if UNITY_EDITOR
     public class CreateCustomEvent : ScriptableWizard
     {
         [MenuItem("Dhumil Tools / Create Custom Event")]
@@ -60,7 +62,7 @@ namespace Project_Setup
 
             // writes the class and imports it so it is visible in the Project window
             File.Delete(filePath);
-            File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);        
+            File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
         }
 
         private void CreateListenerFile()
@@ -88,7 +90,8 @@ namespace Project_Setup
 
             // writes the class and imports it so it is visible in the Project window
             File.Delete(filePath);
-            File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);          
+            File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
         }
     }
+#endif
 }
