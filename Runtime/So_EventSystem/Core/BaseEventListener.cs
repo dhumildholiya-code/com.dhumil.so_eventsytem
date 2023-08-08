@@ -1,19 +1,19 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Project_Setup.So_EventSystem
+namespace EventChannelSystem.Core
 {
-    public abstract class BaseEventListener<T, TE> : MonoBehaviour, IBaseEventListener<T> where TE : BaseEventSo<T>
+    public abstract class BaseEventListener<T> : MonoBehaviour, IEventListener<T>
     {
-        public TE eventChannel;
-        public UnityEvent<T> eventCallback;        
+        public BaseEventChannel<T> eventChannel;
+        public UnityEvent<T> eventCallback;
 
         protected virtual void OnEnable()
         {
             eventChannel.AddListener(this);
         }
 
-        protected virtual void OnDisable()
+        protected virtual void OnDestroy()
         {
             eventChannel.RemoveListener(this);
         }
@@ -21,6 +21,6 @@ namespace Project_Setup.So_EventSystem
         public void OnEventRaised(T eventData)
         {
             eventCallback.Invoke(eventData);
-        }        
+        }
     }
 }

@@ -1,7 +1,9 @@
-namespace Project_Setup.So_EventSystem
+using EventChannelSystem.Core;
+
+namespace EventChannelSystem
 {
-    public class IntEventListener : BaseEventListener<int, IntEventSo>
+    public class IntEventListener : BaseEventListener<int>
     {
-        
+
     }
 }

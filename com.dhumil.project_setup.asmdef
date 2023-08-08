@@ -1,6 +1,6 @@
 {
-    "name": "Project Setup",
-    "rootNamespace": "Project_Setup",
+    "name": "So_EventSystem",
+    "rootNamespace": "EventChannelSystem",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

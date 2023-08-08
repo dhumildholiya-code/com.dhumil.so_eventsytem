@@ -1,19 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Project_Setup.So_EventSystem
+namespace EventChannelSystem.Core
 {
-    public abstract class BaseEventSo<T> : ScriptableObject
+    public abstract class BaseEventChannel<T> : ScriptableObject, IEventChannel<T>
     {
-        private readonly List<IBaseEventListener<T>> _listeners = new List<IBaseEventListener<T>>();
+        private readonly List<IEventListener<T>> _listeners = new List<IEventListener<T>>();
+        public List<IEventListener<T>> Listeners { get {  return _listeners; } }
 
-        public void AddListener(IBaseEventListener<T> listener)
+        public void AddListener(IEventListener<T> listener)
         {
             if (!_listeners.Contains(listener))
                 _listeners.Add(listener);
         }
 
-        public void RemoveListener(IBaseEventListener<T> listener)
+        public void RemoveListener(IEventListener<T> listener)
         {
             if (_listeners.Contains(listener))
                 _listeners.Remove(listener);

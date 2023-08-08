@@ -1,7 +1,7 @@
-namespace Project_Setup.So_EventSystem
+namespace EventChannelSystem
 {
     public struct Void
     {
-        
+
     }
 }

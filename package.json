@@ -1,9 +1,9 @@
 {
-    "name": "com.dhumil.project_setup",
+    "name": "com.dhumil.so_eventsytem",
     "version": "1.4.2",
-    "dispayName" : "Project Setup",
-    "description": "This is small tool to create initial folder structure for project and other common tools for project",
-    "unity" : "2020.3",
+    "dispayName" : "ScriptableObject EventSystem",
+    "description": "Allows you to create scritableobject event system which can make your code clean. And give you much more control from inspector.",
+    "unity" : "2022.3",
     "author": {
       "name": "Dhumil Dholiya",
       "email": "dhumildholiya97@gmail.com",

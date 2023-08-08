@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Project_Setup.CustomPropertyAttributes
+namespace EventChannelSystem.CustomPropertyAttributes
 {
     [AttributeUsage(AttributeTargets.Field)]
     public class ReadOnlyAttribute : PropertyAttribute
     {
-        
+
     }
 }

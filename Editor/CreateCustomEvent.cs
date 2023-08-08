@@ -5,7 +5,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Project_Setup
+namespace EventChannelSystem
 {
 #if UNITY_EDITOR
     public class CreateCustomEvent : ScriptableWizard
@@ -20,6 +20,7 @@ namespace Project_Setup
         [SerializeField] private string dataType;
 
         private string _dirPath;
+        private string _editorDirPath;
         private string _fileName;
         private string _eventClassName;
         private string _captialDataType;
@@ -27,8 +28,10 @@ namespace Project_Setup
         private void OnWizardCreate()
         {
             _dirPath = Path.Combine(Application.dataPath, folderPath);
+            _editorDirPath = Path.Combine(Application.dataPath, folderPath + "/Editor");
             _captialDataType = char.ToUpper(dataType[0]) + dataType.Substring(1);
             CreateEventFile();
+            CreateEditorFile();
             CreateListenerFile();
             AssetDatabase.ImportAsset(Path.Combine("Assets", _dirPath));
             AssetDatabase.Refresh();
@@ -36,7 +39,7 @@ namespace Project_Setup
 
         private void CreateEventFile()
         {
-            _fileName = $"{_captialDataType}EventSo.cs";
+            _fileName = $"{_captialDataType}EventChannel.cs";
             _eventClassName = _fileName.Split('.')[0];
             string filePath = Path.Combine(_dirPath, _fileName);
 
@@ -46,11 +49,12 @@ namespace Project_Setup
             sb.AppendLine("// ===========================================================");
             sb.AppendLine("");
             sb.AppendLine("using UnityEngine;");
+            sb.AppendLine("using EventChannelSystem.Core;");
             sb.AppendLine("");
-            sb.AppendLine("namespace Project_Setup.So_EventSystem");
+            sb.AppendLine("namespace EventChannelSystem");
             sb.AppendLine("{");
-            sb.AppendLine($"    [CreateAssetMenu(fileName = \"{_captialDataType} Event\", menuName = \"Events / {_captialDataType} Event\")]");
-            sb.AppendLine($"    public class {_eventClassName} : BaseEventSo<{dataType}>");
+            sb.AppendLine($"    [CreateAssetMenu(fileName = \"{_captialDataType} EventChannel\", menuName = \"Events / {_captialDataType} EventChannel\")]");
+            sb.AppendLine($"    public class {_eventClassName} : BaseEventChannel<{dataType}>");
             sb.AppendLine(" {");
             sb.AppendLine(" }");
             sb.AppendLine("}");
@@ -76,10 +80,46 @@ namespace Project_Setup
             sb.AppendLine("//           This class is Auto Generated");
             sb.AppendLine("// ===========================================================");
             sb.AppendLine("");
-            sb.AppendLine("namespace Project_Setup.So_EventSystem");
+            sb.AppendLine("using EventChannelSystem.Core;");
+            sb.AppendLine("");
+            sb.AppendLine("namespace EventChannelSystem");
             sb.AppendLine("{");
-            sb.AppendLine($"    public class {className} : BaseEventListener<{dataType}, {_eventClassName}>");
+            sb.AppendLine($"    public class {className} : BaseEventListener<{dataType}>");
             sb.AppendLine(" {");
+            sb.AppendLine(" }");
+            sb.AppendLine("}");
+
+            if (!Directory.Exists(_dirPath))
+            {
+                Directory.CreateDirectory(_dirPath);
+            }
+
+            // writes the class and imports it so it is visible in the Project window
+            File.Delete(filePath);
+            File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
+        }
+        private void CreateEditorFile()
+        {
+            _fileName = $"{_captialDataType}ChannelInspector.cs";
+            string className = _fileName.Split('.')[0];
+            string filePath = Path.Combine(_editorDirPath, _fileName);
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("// ===========================================================");
+            sb.AppendLine("//           This class is Auto Generated");
+            sb.AppendLine("// ===========================================================");
+            sb.AppendLine("");
+            sb.AppendLine("using UnityEditor;");
+            sb.AppendLine("");
+            sb.AppendLine("namespace EventChannelSystem");
+            sb.AppendLine("{");
+            sb.AppendLine($"[CustomEditor(typeof({_eventClassName}))]");
+            sb.AppendLine($"    public class {className} : BaseEventChannelInspector<{dataType}>");
+            sb.AppendLine(" {");
+            sb.AppendLine("     protected override void DrawValueLable()");
+            sb.AppendLine("     {");
+            sb.AppendLine($"         value = EditorGUILayout.{_captialDataType}Field(\"Value\", value);");
+            sb.AppendLine("     }");
             sb.AppendLine(" }");
             sb.AppendLine("}");
 
