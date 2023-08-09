@@ -51,7 +51,7 @@ namespace EventChannelSystem
             sb.AppendLine("using UnityEngine;");
             sb.AppendLine("using EventChannelSystem.Core;");
             sb.AppendLine("");
-            sb.AppendLine("namespace EventChannelSystem");
+            sb.AppendLine("namespace EventChannelSystem.CustomEvent");
             sb.AppendLine("{");
             sb.AppendLine($"    [CreateAssetMenu(fileName = \"{_captialDataType} EventChannel\", menuName = \"Events / {_captialDataType} EventChannel\")]");
             sb.AppendLine($"    public class {_eventClassName} : BaseEventChannel<{dataType}>");
@@ -82,7 +82,7 @@ namespace EventChannelSystem
             sb.AppendLine("");
             sb.AppendLine("using EventChannelSystem.Core;");
             sb.AppendLine("");
-            sb.AppendLine("namespace EventChannelSystem");
+            sb.AppendLine("namespace EventChannelSystem.CustomEvent");
             sb.AppendLine("{");
             sb.AppendLine($"    public class {className} : BaseEventListener<{dataType}>");
             sb.AppendLine(" {");
@@ -104,6 +104,9 @@ namespace EventChannelSystem
             string className = _fileName.Split('.')[0];
             string filePath = Path.Combine(_editorDirPath, _fileName);
 
+            string drawLine = $"var fieldValue = EditorGUILayout.ObjectField(value, typeof({dataType}), true);";
+            string returnLine = $"return fieldValue as {dataType}";
+
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("// ===========================================================");
             sb.AppendLine("//           This class is Auto Generated");
@@ -111,21 +114,22 @@ namespace EventChannelSystem
             sb.AppendLine("");
             sb.AppendLine("using UnityEditor;");
             sb.AppendLine("");
-            sb.AppendLine("namespace EventChannelSystem");
+            sb.AppendLine("namespace EventChannelSystem.CustomEventEditors");
             sb.AppendLine("{");
             sb.AppendLine($"[CustomEditor(typeof({_eventClassName}))]");
             sb.AppendLine($"    public class {className} : BaseEventChannelInspector<{dataType}>");
             sb.AppendLine(" {");
-            sb.AppendLine("     protected override void DrawValueLable()");
+            sb.AppendLine($"     protected override {dataType} DrawValueLable()");
             sb.AppendLine("     {");
-            sb.AppendLine($"         value = EditorGUILayout.{_captialDataType}Field(\"Value\", value);");
+            sb.AppendLine($"        {drawLine}");
+            sb.AppendLine($"        {returnLine}");
             sb.AppendLine("     }");
             sb.AppendLine(" }");
             sb.AppendLine("}");
 
-            if (!Directory.Exists(_dirPath))
+            if (!Directory.Exists(_editorDirPath))
             {
-                Directory.CreateDirectory(_dirPath);
+                Directory.CreateDirectory(_editorDirPath);
             }
 
             // writes the class and imports it so it is visible in the Project window

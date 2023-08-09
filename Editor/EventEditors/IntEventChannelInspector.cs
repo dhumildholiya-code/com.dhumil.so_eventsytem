@@ -1,13 +1,13 @@
 ﻿using UnityEditor;
 
-namespace EventChannelSystem
+namespace EventChannelSystem.EventEditors
 {
     [CustomEditor(typeof(IntEventChannel))]
     public class IntEventChannelInspector : BaseEventChannelInspector<int>
     {
-        protected override void DrawValueLable()
+        protected override int DrawValue()
         {
-            value = EditorGUILayout.IntField("Value", value);
+            return EditorGUILayout.IntField("Value", value);
         }
     }
 }

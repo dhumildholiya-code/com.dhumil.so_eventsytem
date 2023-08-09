@@ -1,14 +1,13 @@
 ﻿using UnityEditor;
-using UnityEngine;
 
 namespace EventChannelSystem
 {
     [CustomEditor(typeof(VoidEventChannel))]
     public class VoidEventChannelInspector : BaseEventChannelInspector<Void>
     {
-        protected override void DrawValueLable()
+        protected override Void DrawValue()
         {
-            return;
+            return new Void();
         }
     }
 }
