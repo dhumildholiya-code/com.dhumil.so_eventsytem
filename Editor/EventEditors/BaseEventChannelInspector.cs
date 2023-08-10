@@ -36,26 +36,32 @@ namespace EventChannelSystem
             {
                 if (_channel.Listeners[i] is MonoBehaviour behaviour)
                 {
-                    EditorGUILayout.ObjectField(behaviour, behaviour.GetType(), true);
+                    var listener = (BaseEventListener<T>)behaviour;
+                    using (new EditorGUILayout.HorizontalScope())
+                    {
+                        EditorGUILayout.ObjectField(listener, listener.GetType(), true);
+                        if (GUILayout.Button("Raise Event"))
+                        {
+                            listener.OnEventRaised(GetValue());
+                        }
+                    }
                 }
             }
             GUILayout.Space(10);
             if (GUILayout.Button("Raise Event"))
             {
-                var targetObject = _prop.serializedObject.targetObject;
-                var targetObjectType = targetObject.GetType();
-                var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
-                var field = targetObjectType.GetField(_prop.propertyPath, bindingFlags);
-                if (field != null)
-                {
-                    var value = (T)field.GetValue(targetObject);
-                    _channel.RaiseEvent(value);
-                }
-                else
-                {
-                    Debug.LogError("Field Not Found");
-                }
+                var value = GetValue();
+                _channel.RaiseEvent(value);
             }
+        }
+
+        private T GetValue()
+        {
+            var targetObject = _prop.serializedObject.targetObject;
+            var targetObjectType = targetObject.GetType();
+            var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var field = targetObjectType.GetField(_prop.propertyPath, bindingFlags);
+            return (T)field.GetValue(targetObject);
         }
     }
 }
