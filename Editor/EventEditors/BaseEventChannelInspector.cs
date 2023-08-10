@@ -1,4 +1,5 @@
 ﻿using EventChannelSystem.Core;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,20 +8,26 @@ namespace EventChannelSystem
     public abstract class BaseEventChannelInspector<T> : Editor
     {
         protected BaseEventChannel<T> _channel;
-        protected T value;
+        protected SerializedProperty _prop;
 
         protected void OnEnable()
         {
             _channel = target as BaseEventChannel<T>;
+            _prop = serializedObject.FindProperty("value");
         }
 
         public override void OnInspectorGUI()
         {
             GUI.enabled = Application.isPlaying;
+            if (_prop == null) return;
+            EditorGUI.BeginChangeCheck();
+            serializedObject.UpdateIfRequiredOrScript();
+            EditorGUILayout.PropertyField(_prop, true);
+            EditorGUILayout.Space(10);
             DrawCustom();
+            serializedObject.ApplyModifiedProperties();
+            EditorGUI.EndChangeCheck();
         }
-
-        protected abstract T DrawValue();
 
         protected void DrawCustom()
         {
@@ -33,10 +40,21 @@ namespace EventChannelSystem
                 }
             }
             GUILayout.Space(10);
-            value = DrawValue();
             if (GUILayout.Button("Raise Event"))
             {
-                _channel.RaiseEvent(value);
+                var targetObject = _prop.serializedObject.targetObject;
+                var targetObjectType = targetObject.GetType();
+                var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
+                var field = targetObjectType.GetField(_prop.propertyPath, bindingFlags);
+                if (field != null)
+                {
+                    var value = (T)field.GetValue(targetObject);
+                    _channel.RaiseEvent(value);
+                }
+                else
+                {
+                    Debug.LogError("Field Not Found");
+                }
             }
         }
     }

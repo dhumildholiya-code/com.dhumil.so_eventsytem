@@ -104,14 +104,12 @@ namespace EventChannelSystem
             string className = _fileName.Split('.')[0];
             string filePath = Path.Combine(_editorDirPath, _fileName);
 
-            string drawLine = $"var fieldValue = EditorGUILayout.ObjectField(value, typeof({dataType}), true);";
-            string returnLine = $"return fieldValue as {dataType}";
-
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("// ===========================================================");
             sb.AppendLine("//           This class is Auto Generated");
             sb.AppendLine("// ===========================================================");
             sb.AppendLine("");
+            sb.AppendLine($"using EventChannelSystem.CustomEvent;");
             sb.AppendLine("using UnityEditor;");
             sb.AppendLine("");
             sb.AppendLine("namespace EventChannelSystem.CustomEventEditors");
@@ -119,11 +117,6 @@ namespace EventChannelSystem
             sb.AppendLine($"[CustomEditor(typeof({_eventClassName}))]");
             sb.AppendLine($"    public class {className} : BaseEventChannelInspector<{dataType}>");
             sb.AppendLine(" {");
-            sb.AppendLine($"     protected override {dataType} DrawValueLable()");
-            sb.AppendLine("     {");
-            sb.AppendLine($"        {drawLine}");
-            sb.AppendLine($"        {returnLine}");
-            sb.AppendLine("     }");
             sb.AppendLine(" }");
             sb.AppendLine("}");
 

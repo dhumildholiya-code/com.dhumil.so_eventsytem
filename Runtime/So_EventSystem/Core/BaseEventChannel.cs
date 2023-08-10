@@ -5,8 +5,9 @@ namespace EventChannelSystem.Core
 {
     public abstract class BaseEventChannel<T> : ScriptableObject, IEventChannel<T>
     {
+        [SerializeField] protected T value;
         protected readonly List<IEventListener<T>> _listeners = new List<IEventListener<T>>();
-        public List<IEventListener<T>> Listeners { get {  return _listeners; } }
+        public List<IEventListener<T>> Listeners { get { return _listeners; } }
 
         public void AddListener(IEventListener<T> listener)
         {
