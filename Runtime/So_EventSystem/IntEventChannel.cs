@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EventChannelSystem
 {
-    [CreateAssetMenu(fileName = "Int EventChannel", menuName = "Events / Int EventChannel")]
+    [CreateAssetMenu(fileName = "Int EventChannel", menuName = "Event Channel / Int")]
     public class IntEventChannel : BaseEventChannel<int>
     {
     }

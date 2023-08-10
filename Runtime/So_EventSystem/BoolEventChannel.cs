@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EventChannelSystem
 {
-    [CreateAssetMenu(fileName = "Bool EventChannel", menuName = "Events / Bool EventChannel")]
+    [CreateAssetMenu(fileName = "Bool EventChannel", menuName = "Event Channel / Bool")]
     public class BoolEventChannel : BaseEventChannel<bool>
     {
     }
