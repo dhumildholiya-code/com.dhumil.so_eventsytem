@@ -1,6 +1,6 @@
 {
     "name": "com.dhumil.so_eventsytem",
-    "version": "1.4.2",
+    "version": "1.0.0",
     "dispayName" : "ScriptableObject EventSystem",
     "description": "Allows you to create scritableobject event system which can make your code clean. And give you much more control from inspector.",
     "unity" : "2022.3",
