@@ -1,6 +1,8 @@
-namespace Project_Setup.So_EventSystem
+using EventChannelSystem.Core;
+
+namespace EventChannelSystem
 {
-    public class VoidEventListener : BaseEventListener<Void, VoidEventSo>
+    public class VoidEventListener : BaseEventListener<Void>
     {
     }
 }

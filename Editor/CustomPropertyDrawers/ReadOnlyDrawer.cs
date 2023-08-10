@@ -1,10 +1,9 @@
-﻿using Project_Setup.CustomPropertyAttributes;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Project_Setup.CustomPropertyDrawers
+namespace EventChannelSystem.CustomPropertyAttributes
 {
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]

@@ -1,7 +1,10 @@
-namespace Project_Setup.So_EventSystem
+using System;
+
+namespace EventChannelSystem
 {
+    [Serializable]
     public struct Void
     {
-        
+
     }
 }

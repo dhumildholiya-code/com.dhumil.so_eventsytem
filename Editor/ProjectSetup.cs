@@ -5,7 +5,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Project_Setup
+namespace EventChannelSystem
 {
 #if UNITY_EDITOR
     public static class ProjectSetup
