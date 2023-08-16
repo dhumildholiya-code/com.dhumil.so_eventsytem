@@ -1,0 +1,18 @@
+{
+    "name": "com.dhumil.project_setup.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:de543fc90b616e54b9a5ca5a0d2cd1bf"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
